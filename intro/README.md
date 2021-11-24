@@ -8,8 +8,8 @@ Here, [ROS2 Galactic](https://docs.ros.org/en/galactic/index.html) version is us
 
 ## my_package
 
-Explores the publisher-subscriber model, and also integrates the use of custom message
-type.
+Explores the publisher-subscriber model, integrates the use of custom message
+type, and uses launch files to launch both nodes simultaneously.
 
 Some of the highlights/thoughts:
 - Uses `ament_python` as build tool
