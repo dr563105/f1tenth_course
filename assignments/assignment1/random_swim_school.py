@@ -3,6 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 import math
+import random
 
 class MoveTurtlebot(Node):
 
@@ -42,17 +43,12 @@ class MoveTurtlebot(Node):
 def main(args=None):
     rclpy.init(args=args)
     mt = MoveTurtlebot()
-    linear_velocity = float(input("Enter Linear velocity between 2.0 and 6.0: "))
-    if (2.0 <= linear_velocity <= 6.0):
-        angular_velocity = float(input("Enter Angular velocity between 1.0 and 3.0: "))#0.1
-        if(0.0 <= angular_velocity <= 3.0):
-            mt.twist_msg.linear.x = linear_velocity
-            mt.twist_msg.angular.z = -angular_velocity
-            rclpy.spin(mt)
-        else:
-            print("Error! - Value of angular velocity must be between 1.0 and 3.0")
-    else:
-        print("Error! - Value of linear velocity must be between 2.0 and 6.0")
+    linear_velocity = round(random.uniform(2.0, 6.0),1)#float(input("Enter Linear velocity between 2.0 and 6.0: "))
+    angular_velocity = round(random.uniform(1.0, 3.0),1)#float(input("Enter Angular velocity between 1.0 and 3.0: "))#0.1
+    mt.get_logger().info(f'linear velocity: {linear_velocity}, angular_velocity: {angular_velocity}')
+    mt.twist_msg.linear.x = linear_velocity
+    mt.twist_msg.angular.z = angular_velocity
+    rclpy.spin(mt)
 
 if __name__ == '__main__':
     main()
